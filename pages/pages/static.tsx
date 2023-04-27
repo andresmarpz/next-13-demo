@@ -4,7 +4,10 @@ import Country from "~/ui/country"
 
 export async function getStaticProps() {
   const country = await getCountry("uruguay")
-  const time = await getTime(country)
+  const time = await getTime({
+    lat: country.capitalInfo.latlng[0],
+    lon: country.capitalInfo.latlng[1],
+  })
 
   return {
     props: {

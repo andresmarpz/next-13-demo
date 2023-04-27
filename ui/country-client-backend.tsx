@@ -4,13 +4,12 @@ import Country from "./country"
 import CountryPlaceholder from "./country-placeholder"
 import useSWR from "swr"
 import getCountry from "~/lib/get-country"
-import getTime from "~/lib/get-time"
 
 interface Props {
   name: string
 }
 
-export default function CountryClient({ name }: Props) {
+export default function CountryClientBackend({ name }: Props) {
   const {
     data: country,
     isLoading,
@@ -22,15 +21,11 @@ export default function CountryClient({ name }: Props) {
     isLoading: isLoadingTime,
     error: errorTime,
   } = useSWR(country ? country.name.common : null, () =>
-    getTime(
-      {
-        lat: country!.capitalInfo.latlng[0],
-        lon: country!.capitalInfo.latlng[1],
-      },
-      {
-        cache: "no-store",
-      }
-    )
+    fetch(
+      `/api/time?lat=${country!.capitalInfo.latlng[0]}&lon=${
+        country!.capitalInfo.latlng[1]
+      }`
+    ).then((res) => res.json())
   )
 
   if (isLoading || isLoadingTime) return <CountryPlaceholder />

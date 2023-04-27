@@ -1,5 +1,6 @@
 import { Suspense } from "react"
 import CountryClient from "~/ui/country-client"
+import CountryClientBackend from "~/ui/country-client-backend"
 import CountryDynamic from "~/ui/country-dynamic"
 import CountryPlaceholder from "~/ui/country-placeholder"
 import CountryStatic from "~/ui/country-static"
@@ -27,6 +28,11 @@ export default function Home() {
         <div>
           <h2>Client Side Rendering</h2>
           <CountryClient name="argentina" />
+        </div>
+
+        <div>
+          <h2>Client Side Rendering (backend)</h2>
+          <CountryClientBackend name="argentina" />
         </div>
 
         {/* <div>

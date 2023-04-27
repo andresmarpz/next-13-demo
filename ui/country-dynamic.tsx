@@ -10,9 +10,15 @@ export default async function CountryDynamic({ name }: Props) {
   const country = await getCountry(name, {
     cache: "no-store",
   })
-  const time = await getTime(country, {
-    cache: "no-store",
-  })
+  const time = await getTime(
+    {
+      lat: country.capitalInfo.latlng[0],
+      lon: country.capitalInfo.latlng[1],
+    },
+    {
+      cache: "no-store",
+    }
+  )
 
   return <Country country={country} time={time} />
 }

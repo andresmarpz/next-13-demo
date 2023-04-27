@@ -5,11 +5,11 @@ export interface ITime {
 }
 
 export default async function getTime(
-  country: ICountry,
+  { lat, lon }: { lat: number; lon: number },
   options?: RequestInit | undefined
 ) {
   const res = await fetch(
-    `https://api.api-ninjas.com/v1/worldtime?lat=${country.capitalInfo.latlng[0]}&lon=${country.capitalInfo.latlng[1]}`,
+    `https://api.api-ninjas.com/v1/worldtime?lat=${lat}&lon=${lon}`,
     {
       ...options,
       headers: {
