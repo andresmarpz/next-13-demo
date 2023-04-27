@@ -20,7 +20,7 @@ export default function CountryClientBackend({ name }: Props) {
     data: time,
     isLoading: isLoadingTime,
     error: errorTime,
-  } = useSWR(country ? country.name.common : null, () =>
+  } = useSWR(country ? ["backend", country.name.common] : null, () =>
     fetch(
       `/api/time?lat=${country!.capitalInfo.latlng[0]}&lon=${
         country!.capitalInfo.latlng[1]

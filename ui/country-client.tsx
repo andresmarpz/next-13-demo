@@ -21,7 +21,7 @@ export default function CountryClient({ name }: Props) {
     data: time,
     isLoading: isLoadingTime,
     error: errorTime,
-  } = useSWR(country ? country.name.common : null, () =>
+  } = useSWR(country ? ["client", country.name.common] : null, () =>
     getTime(
       {
         lat: country!.capitalInfo.latlng[0],

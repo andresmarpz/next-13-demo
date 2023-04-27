@@ -11,7 +11,7 @@ interface Props {
 
 export default function Country({ country, time }: Props) {
   return (
-    <div className="flex w-48 flex-col items-center gap-4 rounded border border-gray-700 p-3">
+    <div className="flex w-56 flex-col items-center gap-4 rounded border border-gray-700 bg-gray-700 bg-opacity-20 p-3">
       <Image
         className="h-[80px] w-[120px] rounded"
         src={country.flags.svg}
