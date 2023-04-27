@@ -2,6 +2,7 @@ import { Suspense } from "react"
 import CountryClient from "~/ui/country-client"
 import CountryClientBackend from "~/ui/country-client-backend"
 import CountryDynamic from "~/ui/country-dynamic"
+import CountryISR from "~/ui/country-isr"
 import CountryPlaceholder from "~/ui/country-placeholder"
 import CountryStatic from "~/ui/country-static"
 
@@ -15,6 +16,12 @@ export default function Home() {
           <h2>Static Site Generation</h2>
           {/* @ts-expect-error RSC */}
           <CountryStatic name="uruguay" />
+        </div>
+
+        <div>
+          <h2>Incremental Static Generation (30min)</h2>
+          {/* @ts-expect-error RSC */}
+          <CountryISR name="uruguay" />
         </div>
 
         <div>
