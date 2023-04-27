@@ -8,6 +8,9 @@ export interface ICountry {
     svg: string
     alt: string
   }
+  capitalInfo: {
+    latlng: number[]
+  }
 }
 
 export default async function getCountry(

@@ -17,10 +17,10 @@ export default function Home() {
         </div>
 
         <div>
-          <h2>Server Side Rendering</h2>
+          <h2>SSR (Streaming)</h2>
           <Suspense fallback={<CountryPlaceholder />}>
             {/* @ts-expect-error RSC */}
-            <CountryDynamic name="france" />
+            <CountryDynamic name="germany" />
           </Suspense>
         </div>
 

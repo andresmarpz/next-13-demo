@@ -2,9 +2,10 @@
 
 import Country from "./country"
 import CountryPlaceholder from "./country-placeholder"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import useSWR from "swr"
 import getCountry from "~/lib/get-country"
+import getTime from "~/lib/get-time"
 
 interface Props {
   name: string
@@ -17,8 +18,18 @@ export default function CountryClient({ name }: Props) {
     error,
   } = useSWR(name, (name) => getCountry(name, { cache: "no-store" }))
 
-  if (isLoading) return <CountryPlaceholder />
-  if (error || !country) return <div>error</div>
+  const {
+    data: time,
+    isLoading: isLoadingTime,
+    error: errorTime,
+  } = useSWR(country ? country.name.common : null, () =>
+    getTime(country!, {
+      cache: "no-store",
+    })
+  )
 
-  return <Country country={country} />
+  if (isLoading || isLoadingTime) return <CountryPlaceholder />
+  if (error || errorTime || !country || !time) return <div>error</div>
+
+  return <Country country={country} time={time} />
 }
